@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Secondscreen extends StatelessWidget {
-  final String data;
-  const Secondscreen({super.key, required this.data});
+class Fourthscreen extends StatelessWidget {
+  const Fourthscreen({super.key});
 
   @override 
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("layar Pertama"),
+        title: Text("layar Keempat"),
         backgroundColor: Colors.blue,
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(data),
             ElevatedButton(
             onPressed: () {
               Navigator.pop(context);

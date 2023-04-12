@@ -1,10 +1,20 @@
 import 'dart:html';
 
 import 'package:belajar_navigasi/secondscreen.dart';
+import 'package:belajar_navigasi/thirdscreen.dart';
 import 'package:flutter/material.dart';
 
 class Firstscreen extends StatelessWidget {
   const Firstscreen({super.key});
+
+  Future<void> _navigatescreen(BuildContext context) async {
+    final result = await Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ThirdScreen()));
+
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$result')));
+  }
 
   @override 
   Widget build(BuildContext context){
@@ -14,16 +24,36 @@ class Firstscreen extends StatelessWidget {
         backgroundColor: Colors.red,
       ),
       body: Center(
-        child: ElevatedButton(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
+            Navigator.push(context,
               MaterialPageRoute(
-                builder: (context) => Secondscreen()
+                builder: (context) => Secondscreen(data: 'Hello From First Screen ')
               )
             );
           },
           child: Text("Menuju Ke Layar Kedua")
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        ElevatedButton(
+          onPressed: (){
+            _navigatescreen(context);
+          },
+          child: Text("Menuju Layar Ketiga")),
+          SizedBox(
+            height: 15,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/fourth');
+            },
+            child: Text('Menuju Layar Keempat'))
+         ],
         ),
       ),
     );
